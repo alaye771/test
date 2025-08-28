@@ -2,19 +2,92 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'segoe UI', Tahoma, Geneva, Verdana,
-	sans-serif;
+	font-family: 'segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 html {
 	font-size: 62.5%;
+}    
+
+/* ================= TITRES ================= */
+.victory-title {
+    color: #4caf50;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
+.defeat-title {
+    color: #f44336;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ================= BOUTONS REJOUER ================= */
+.modal-btn {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.victory-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.victory-btn:hover {
+    background: #43a047;
+}
+
+.defeat-btn {
+    background: #f44336;
+    color: white;
+}
+
+.defeat-btn:hover {
+    background: #e53935;
+}
+
+/* ================= ANIMATION MODAL ================= */
+.modal-animate {
+    animation: zoomFade 0.8s ease forwards;
+    white-space: normal;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+@keyframes zoomFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ================= VARIABLES ================= */
 :root {
 	--width: 40vw;
 	--height: 24vw;
+	--fs-small: 1.2rem;
+	--fs-medium: 1.8rem;
+	--fs-large: 3rem;
+	--fs-xlarge: 4rem;
 }
 
+/* ================= CONTAINER ================= */
 .container {
 	height: 100vh;
 	display: grid;
@@ -31,6 +104,7 @@ html {
     gap: 5rem;
 }
 
+/* ================= GRILLE ================= */
 .cells,
 .puzzle {
 	width: var(--width);
@@ -62,7 +136,7 @@ html {
 	height: 100%;
 	background-size: var(--width) var(--height);
 	background-repeat: no-repeat;
-	animation: dropAmin 0.5s forwards;
+	animation: dropAnim 0.5s forwards; /* ✅ corrigé */
 }
 
 @keyframes dropAnim {
@@ -81,9 +155,10 @@ html {
 	width: calc(var(--width) / 5);
 	height: calc(var(--height) / 4);
 	cursor: grab;
-  }
+}
 
-  .final-img {
+/* ================= IMAGE FINALE ================= */
+.final-img {
 	width: 35vw;
 	aspect-ratio: 16 / 9;
 	background-image: url(images/images.jpg);
@@ -91,7 +166,6 @@ html {
     background-position: center;
     background-size: cover;
 	position: relative;
-
 }
 
 .btns {
@@ -129,10 +203,11 @@ html {
 	transition: background-color 0.3s;
 }
 
-.bnt:hover{
+.btn:hover{ /* ✅ corrigé */
 	background-color: rgba(109, 161, 240, 0.808);
 }
 
+/* ================= MODAL ================= */
 .modal {
 	position: fixed;
 	inset: 0;
@@ -157,23 +232,24 @@ html {
 	border-radius: 1rem;
 }
 
- .modal-heading {
- 	font-size: 4rem;
- }
+.modal-heading {
+ 	font-size: var(--fs-xlarge);
+}
 
-  .modal-text {
- 	font-size: 1.8rem;
+.modal-text {
+ 	font-size: var(--fs-medium);
  	text-transform: uppercase;
- }
+}
 
- .modal-btn {
+.modal-btn {
 	margin-top: 2rem
 }
 
+/* ================= TEXTE / AUTRES ================= */
 .attempt {
 	display: inline-block;
 	margin-inline: 0.5rem;
-	font-size: 4rem;
+	font-size: var(--fs-xlarge);
 	color: #5B3C11;
 }
 
@@ -181,36 +257,87 @@ html {
 	position: absolute;
 	right: 2rem;
 	bottom: 2rem;
-	font-size: 3rem;
+	font-size: var(--fs-large);
 	color: rgba(51, 51, 51, 0.365); 
 	text-transform: uppercase;
 }
 
-
-/* ✅ Animation fade-in */
-.emoji-correct {
-  animation: fadeIn 0.5s ease-in-out;
-  font-size: 2rem;
-  text-align: center;
+/* Titres */
+.victory-title {
+    color: #4caf50;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-/* ❌ Animation shake */
-.emoji-wrong {
-  animation: shake 0.4s ease-in-out;
-  font-size: 2rem;
-  text-align: center;
+.defeat-title {
+    color: #f44336;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
+/* Boutons rejouer */
+.modal-btn {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
 }
 
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
+.victory-btn {
+    background: #4caf50;
+    color: white;
 }
 
+.victory-btn:hover {
+    background: #43a047;
+}
+
+.defeat-btn {
+    background: #f44336;
+    color: white;
+}
+
+.defeat-btn:hover {
+    background: #e53935;
+}
+
+/* Animation modal */
+.modal-animate {
+    animation: zoomFade 0.8s ease forwards;
+    white-space: normal;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+@keyframes zoomFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.global-chrono {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff4444;
+  background: rgba(0,0,0,0.7);
+  padding: 8px 15px;
+  border-radius: 10px;
+  z-index: 9999;
+}
